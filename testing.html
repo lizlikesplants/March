@@ -38,13 +38,15 @@
 </style>
 <!-- do sidebar stuff here -->
 <div class="sidebar">
-    <h2 id="main-heading">Philadelphia</h2>
+    <h2 id="main-heading">Tom's Global Map</h2>
     <a><button id= "wood" class= "button"><b>Go To Woodlanders</b></button></a>
     <a><button id="handSpi" class= "button"><b>Go To Handspider</b></button></a>
     <a><button id= "canada" class= "button"><b>Go To North Canada</b></button></a>
     <div>
     <a><button id= "Charlottesville" class= "button2"><b>Go To Charlottesville </b></button></a>
     <a><button id= "newBruns" class= "button2"><b>Go To New Brunswick </b></button></a>
+    <a><button id= "mumbai" class= "button2"><b>Go To Mumbai </b></button></a>
+
     <div class="inputgroup">
       <label for="str">Suggestions:</label>
       <input id="str" type="text">
@@ -54,14 +56,17 @@
     <div>
 <head>
 
-    <title>Tom's Philly Map</title>
+    <title>Tom's Global Map</title>
     <meta charset="utf-8" />
     <!-- LINKS-->
     <link
         rel="stylesheet"
         href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"
     />
+    <script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css"/>
+<script src= "https://api.mapbox.com/mapbox.js/plugins/turf/v2.0.2/turf.min.js"></script>
 
 </head>
 
@@ -74,10 +79,12 @@
       <script src= "js/jquery-2.2.0.js"></script>
       <script src= "js/woodLanders.js"></script>
       <script src= "js/edgarPoe.js"></script>
+      <script src= "js/mumbaiSlums.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js"></script>
       <script src= "js/colorado.js"></script>
-
-
+      <script src= "https://npmcdn.com/@turf/turf/turf.min.js"></script>
+      <script src= "js/turf.js"></script>
+      <script src='https://api.mapbox.com/mapbox.js/plugins/turf/v2.0.2/turf.min.js'></script>
 
 <script>
 
@@ -191,7 +198,10 @@ var overlays = {
 	"New Brunswick Polyline": coolPlaces
 };
 
-L.control.layers(baseLayers, overlays).addTo(map);
+var oneMileOut = turf.buffer(woodLanders, 1, 'miles');
+console.log(oneMileOut);
+L.control.layers(baseLayers, overlays, oneMileOut).addTo(map);
+
 
 
   // map = L.map('map', {
@@ -245,6 +255,12 @@ L.control.layers(baseLayers, overlays).addTo(map);
     return layer.feature.properties.name;
   }).addTo(map);
 
+  var mumbai= L.geoJSON(mumbaiSlums, {
+     icon: woodLand
+  }).bindPopup(function (layer) {
+    return layer.feature.properties.name;
+  }).addTo(map);
+
   ///// polyline
 
   $("#newBruns").click(function(){
@@ -269,6 +285,11 @@ L.control.layers(baseLayers, overlays).addTo(map);
 
   $("#Charlottesville").click(function(){
      map.setView([38.035544,-78.504926]);
+     map.setZoom(14);
+  });
+
+  $("#mumbai").click(function(){
+     map.setView([19.10227,72.84157]);
      map.setZoom(14);
   });
 

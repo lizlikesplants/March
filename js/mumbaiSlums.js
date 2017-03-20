@@ -1,61 +1,61 @@
-var pennThings = {
+var mumbaiSlums = {
   "type": "FeatureCollection",
   "features": [
     {
       "type": "Feature",
       "properties": {
-        "thing": "button"
+        "name": "Old Police Lane",
+        "description": "Savita's Home"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -75.19357860088348,
-          39.952393520733295
+          72.84157,
+          19.10227
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "thing": "statue"
+        "name": "Indira Nagar Slum - Mumbai East",
+        "description": "https://www.theguardian.com/global-development-professionals-network/2017/feb/27/death-trap-toilets-mumbai-india-slums?CMP=ema-1702&CMP="
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -75.19363224506378,
-          39.952080989303326
+          72.92327,
+          19.06769
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "thing": "walkbridge"
+        "name": "Dargah Galli",
+        "description": "Shaheena Attarwala maternal home"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -75.19879281520842,
-          39.95247987785028
+          72.83855,
+          19.05089
         ]
       }
     },
     {
       "type": "Feature",
       "properties": {
-        "thing": "Canada"
+        "name": "Fanas Wadi",
+        "description": "Manish masa friend"
       },
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -102.711181640625,
-          67.39482187643165
+          72.82524,
+          18.95168
         ]
       }
     }
-    ]
-  };
-
-
-
-    console.log(pennThings);
+  ]
+};
